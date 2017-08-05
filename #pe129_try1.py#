@@ -1,0 +1,6 @@
+from num_theo import gcd, power_mod, lcm
+from sympy import nextprime
+
+BOUND = 1000000
+
+if __name__=="__main__":

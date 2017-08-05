@@ -1,0 +1,51 @@
+from sympy import isprime, divisors, nextprime
+from fractions import gcd
+from num_theo import power_mod
+
+def lcm(a, b):
+	return (a*b)//gcd(a,b)
+
+#assumes p is prime power - returns period of 10^j mod p
+def period_of_10_prime(p, exp):
+	divs = divisors((p-1)*p**(exp - 1))
+	pexp = p**exp
+	computed = {}
+	computed[1] = 10 % pexp
+	for d in divs:
+		if power_mod_list(10, d, pexp, computed) == 1:
+			return d
+	return 0 #error condition
+
+
+def power_mod_list(a, exp, n, computed):
+	if exp not in computed:
+		u = power_mod_list(a, exp//2, n, computed)
+		if exp % 2 == 0:
+			computed[exp] = (u * u) % n
+		else:
+			computed[exp] = (((u * u) % n) * a) % n
+	return computed[exp]
+
+def find_start_loc(num, divs):
+	s = 0
+	f = len(divs) - 1
+	while f > s:
+		c = (s + f)//2
+		if divs[c] * num < BOUND:
+			s = c
+		else:
+			f = c
+	return s
+
+if __name__=="__main__":
+	BOUND = 1000000
+
+	d = divisors(3**15)
+	p = [1, 1] + [u//9 for u in d[2:]]
+	divs = zip(d,p)
+	p = 7
+	while True:
+		p_power = p
+                
+
+		p = nextprime(p)

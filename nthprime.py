@@ -1,0 +1,13 @@
+def nth_prime(n):
+	prime_list = [2]
+	x = 3
+	last_prime = 2
+	while (len(prime_list) < n):
+		if (len([y for y in prime_list if x % y == 0]) == 0):
+			prime_list.append(x)
+			last_prime = x
+		x = x + 2
+
+	return prime_list.pop()
+
+print(nth_prime(10001))
