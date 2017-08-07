@@ -2,7 +2,9 @@ import fractions
 import math
 #from sympy.ntheory.continued_fraction import continued_fraction_convergents, continued_fraction_iterator
 #from sympy import N
-from bigfloat import BigFloat, sqrt, const_pi, precision
+import gmpy2
+from gmpy2 import sqrt, mpfr, const_pi
+#from bigfloat import BigFloat, sqrt, const_pi, precision
 
 #stores in the form (a + b\sqrt{d})/n.
 class QuadRat(object):
